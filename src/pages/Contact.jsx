@@ -109,14 +109,14 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900/20 text-white pt-24">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-100 to-red-100/20 dark:from-black dark:via-gray-900 dark:to-red-900/20 text-black dark:text-white pt-24 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-red-500 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
             Get In Touch
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Have a project in mind or just want to chat about technology? 
             I'd love to hear from you. Let's create something amazing together!
           </p>
@@ -134,16 +134,16 @@ const Contact = () => {
                   <a
                     key={index}
                     href={info.link}
-                    className="flex items-start space-x-4 p-4 bg-gray-900/30 rounded-lg border border-gray-700 hover:border-red-500/50 transition-all duration-300 group backdrop-blur-sm"
+                    className="flex items-start space-x-4 p-4 bg-gray-200/30 dark:bg-gray-900/30 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-red-500/50 transition-all duration-300 group backdrop-blur-sm"
                   >
                     <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
                       {info.icon}
                     </span>
                     <div>
-                      <h3 className="font-semibold text-lg group-hover:text-red-400 transition-colors">
+                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white group-hover:text-red-500 transition-colors">
                         {info.title}
                       </h3>
-                      <p className="text-gray-300 group-hover:text-white transition-colors">
+                      <p className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                         {info.value}
                       </p>
                       <p className="text-sm text-gray-500">
@@ -157,7 +157,7 @@ const Contact = () => {
 
             {/* Social Media */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-white to-red-400 bg-clip-text text-transparent">
+              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
                 Follow Me
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -167,12 +167,12 @@ const Contact = () => {
                     <a
                       key={index}
                       href={social.url}
-                      className={`cursor-target flex flex-col items-center p-4 bg-gray-900/30 rounded-lg border border-gray-700 hover:border-red-500/50 transition-all duration-300 group backdrop-blur-sm ${social.color} ${social.bgColor}`}
+                      className={`cursor-target flex flex-col items-center p-4 bg-gray-200/30 dark:bg-gray-900/30 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-red-500/50 transition-all duration-300 group backdrop-blur-sm ${social.color} ${social.bgColor}`}
                     >
-                      <div className="text-gray-300 mb-2 group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-gray-700 dark:text-gray-300 mb-2 group-hover:scale-110 transition-transform duration-300">
                         <IconComponent className="w-8 h-8" />
                       </div>
-                      <span className="text-sm font-medium">{social.name}</span>
+                      <span className="text-sm font-medium text-gray-900 dark:text-white">{social.name}</span>
                     </a>
                   );
                 })}
@@ -193,8 +193,8 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gray-900/30 rounded-lg p-8 border border-gray-700 backdrop-blur-sm">
-            <h2 className="text-2xl font-bold mb-6 text-center">Send Message</h2>
+          <div className="bg-gray-200/30 dark:bg-gray-900/30 rounded-lg p-8 border border-gray-300 dark:border-gray-700 backdrop-blur-sm">
+            <h2 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">Send Message</h2>
             
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-green-900/30 border border-green-600/50 rounded-lg">
@@ -207,25 +207,25 @@ const Contact = () => {
 
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium mb-2">Name *</label>
+                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">Name *</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
                   placeholder="Adinata Alaudin Pranaja"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Email *</label>
+                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">Email *</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
                   placeholder="adinata.alaudin@ui.ac.id"
                 />
               </div>

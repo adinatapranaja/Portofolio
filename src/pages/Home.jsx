@@ -55,7 +55,7 @@ const Home = ({ setCurrentPage }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900/20 text-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-100 to-red-100/20 dark:from-black dark:via-gray-900 dark:to-red-900/20 text-black dark:text-white overflow-hidden transition-colors duration-300">
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -66,8 +66,8 @@ const Home = ({ setCurrentPage }) => {
             <div className="space-y-8">
               <div>
                 <h1 className="text-5xl md:text-7xl font-bold mb-4">
-                  <span className="block text-gray-300">Hello, I'm</span>
-                  <span className="block bg-gradient-to-r from-white to-red-500 bg-clip-text text-transparent">
+                  <span className="block text-gray-700 dark:text-gray-300">Hello, I'm</span>
+                  <span className="block bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
                     Adinata Alaudin Pranaja
                   </span>
                 </h1>
@@ -77,7 +77,7 @@ const Home = ({ setCurrentPage }) => {
                 </div>
               </div>
 
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl">
+              <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl">
                 Mahasiswa S1 Computer Science Universitas Indonesia & Purwadhika Full Stack Graduate. 
                 Passionate about crafting digital experiences with code and creativity. Specialized in React.js, 
                 Firebase, and modern web technologies to build scalable, user-focused applications.
@@ -156,24 +156,24 @@ const Home = ({ setCurrentPage }) => {
       </section>
 
       {/* Skills Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-black/20">
+            <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100/20 dark:bg-black/20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-white to-red-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
             Technical Skills
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skills.map((skill, index) => (
-              <div key={skill.name} className="bg-gray-900/50 rounded-lg p-6 backdrop-blur-sm border border-gray-700 hover:border-red-500/50 transition-all duration-300">
+              <div key={skill.name} className="bg-gray-200/50 dark:bg-gray-900/50 rounded-lg p-6 backdrop-blur-sm border border-gray-300 dark:border-gray-700 hover:border-red-500/50 transition-all duration-300">
                 <div className="flex justify-between items-center mb-3">
-                  <h3 className="text-lg font-semibold">{skill.name}</h3>
-                  <span className="text-sm text-gray-400">{skill.level}%</span>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{skill.name}</h3>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">{skill.level}%</span>
                 </div>
-                <div className="w-full bg-gray-700 rounded-full h-2">
+                <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2">
                   <div 
                     className={`h-2 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
                     style={{ 
                       width: isVisible ? `${skill.level}%` : '0%',
-                      transitionDelay: `${index * 200}ms`
+                      transitionDelay: `${index * 100}ms`
                     }}
                   />
                 </div>
@@ -186,18 +186,18 @@ const Home = ({ setCurrentPage }) => {
       {/* Experience Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-white to-red-500 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
             Experience
           </h2>
           <div className="space-y-8">
             {experiences.map((exp, index) => (
-              <div key={index} className="bg-gray-900/30 rounded-lg p-6 border-l-4 border-red-500 backdrop-blur-sm hover:bg-gray-900/50 transition-all duration-300">
+              <div key={index} className="bg-gray-200/30 dark:bg-gray-900/30 rounded-lg p-6 border-l-4 border-red-500 backdrop-blur-sm hover:bg-gray-200/50 dark:hover:bg-gray-900/50 transition-all duration-300">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                  <h3 className="text-xl font-bold text-white">{exp.title}</h3>
-                  <span className="text-red-400 font-medium">{exp.period}</span>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{exp.title}</h3>
+                  <span className="text-red-500 font-medium">{exp.period}</span>
                 </div>
-                <p className="text-lg text-gray-300 mb-2">{exp.company}</p>
-                <p className="text-gray-400">{exp.description}</p>
+                <p className="text-lg text-gray-700 dark:text-gray-300 mb-2">{exp.company}</p>
+                <p className="text-gray-600 dark:text-gray-400">{exp.description}</p>
               </div>
             ))}
           </div>

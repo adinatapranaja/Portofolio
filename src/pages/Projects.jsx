@@ -32,14 +32,14 @@ const Projects = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900/20 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-100 to-red-100/20 dark:from-black dark:via-gray-900 dark:to-red-900/20 text-black dark:text-white transition-colors duration-300">
       {/* Header Section */}
       <div className="pt-24 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-red-500 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
             My Galleria
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             A showcase of my development journey featuring QR Events, portfolio websites, Networking, and modern web applications. 
             Each project demonstrates my expertise in React.js, Firebase, and user-centered design principles.
           </p>
@@ -49,7 +49,7 @@ const Projects = () => {
       {/* ScrollStack Projects Section */}
       <div className="relative">
         {/* Auto Scroll Indicator */}
-        <div className="absolute top-4 right-4 z-10 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 text-sm text-gray-300 border border-gray-600">
+        <div className="absolute top-4 right-4 z-10 bg-white/70 dark:bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
             <span>Auto scrolling • Scroll to control</span>
@@ -108,7 +108,7 @@ const Projects = () => {
               href="https://github.com/adinatapranaja"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
+              className="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
             >
               Visit GitHub Profile
             </a>

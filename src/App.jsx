@@ -149,7 +149,7 @@ const App = () => {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <div className="min-h-screen bg-black text-white">
+        <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
           <SEOHead currentPage={currentPage} />
           <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
           <main className="relative">
@@ -157,18 +157,18 @@ const App = () => {
           </main>
           
           {/* Footer */}
-          <footer className="bg-black/50 border-t border-gray-800 py-8 px-4 sm:px-6 lg:px-8">
+          <footer className="bg-gray-100/50 dark:bg-black/50 border-t border-gray-300 dark:border-gray-800 py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
             <div className="max-w-7xl mx-auto">
               <div className="flex flex-col md:flex-row justify-between items-center">
                 <div className="mb-4 md:mb-0">
-                  <p className="text-gray-400">
+                  <p className="text-gray-600 dark:text-gray-400">
                     © 2025 Adinata Pranaja. Built with React & TailwindCSS.
                   </p>
                 </div>
                 <div className="flex space-x-6">
-                  <button className="text-gray-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer">Privacy</button>
-                  <button className="text-gray-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer">Terms</button>
-                  <button className="text-gray-400 hover:text-white transition-colors bg-transparent border-none cursor-pointer">Sitemap</button>
+                  <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-transparent border-none cursor-pointer">Privacy</button>
+                  <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-transparent border-none cursor-pointer">Terms</button>
+                  <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-transparent border-none cursor-pointer">Sitemap</button>
                 </div>
               </div>
             </div>

@@ -44,8 +44,8 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
       <nav className={`
         fixed top-0 w-full z-50 transition-all duration-300
         ${isScrolled 
-          ? 'bg-black/95 backdrop-blur-md border-b border-red-900/50' 
-          : 'bg-black/90 backdrop-blur-sm border-b border-red-900/30'
+          ? 'bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-red-300/50 dark:border-red-900/50' 
+          : 'bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-red-300/30 dark:border-red-900/30'
         }
       `}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,11 +54,30 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
             <div className="flex items-center">
               <button 
                 onClick={() => handleNavigation('home')}
-                className="text-red-600 text-2xl font-bold hover:text-red-400 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 rounded"
+                className="flex items-center space-x-2 md:space-x-3 group focus:outline-none focus:ring-2 focus:ring-red-500 rounded-lg p-2 transition-all duration-300"
               >
-                <span className="bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
-                  Adinata AP
-                </span>
+                {/* Logo Icon/Symbol */}
+                <div className="relative w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-all duration-300">
+                  <span className="text-white font-bold text-sm md:text-lg">A</span>
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-400/30 to-transparent rounded-lg"></div>
+                </div>
+                
+                {/* Logo Text - Hidden on small screens, visible on md+ */}
+                <div className="hidden sm:flex flex-col">
+                  <span className="text-base md:text-lg font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent group-hover:from-red-400 group-hover:to-red-600 transition-all duration-300">
+                    Adinata AP
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                    Portfolio
+                  </span>
+                </div>
+                
+                {/* Mobile only - Just initials */}
+                <div className="sm:hidden">
+                  <span className="text-sm font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent group-hover:from-red-400 group-hover:to-red-600 transition-all duration-300">
+                    AP
+                  </span>
+                </div>
               </button>
             </div>
 
@@ -86,7 +105,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className="cursor-target p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="cursor-target p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500"
                 aria-label="Toggle theme"
               >
                 <div className="w-5 h-5 flex items-center justify-center">
@@ -97,13 +116,13 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="cursor-target md:hidden p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="cursor-target md:hidden p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
                 aria-label="Toggle mobile menu"
               >
                 <div className="w-6 h-6 flex flex-col justify-center items-center">
-                  <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
-                  <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-                  <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
+                  <span className={`bg-gray-800 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
+                  <span className={`bg-gray-800 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                  <span className={`bg-gray-800 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
                 </div>
               </button>
             </div>
@@ -114,7 +133,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
         <div className={`
           md:hidden transition-all duration-300 ease-in-out
           ${isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}
-          overflow-hidden bg-black/95 backdrop-blur-md border-t border-red-900/30
+          overflow-hidden bg-white/95 dark:bg-black/95 backdrop-blur-md border-t border-red-300/30 dark:border-red-900/30
         `}>
           <div className="px-4 pt-2 pb-3 space-y-1">
             {navigationItems.map((item) => (
@@ -126,7 +145,7 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
                   focus:outline-none focus:ring-2 focus:ring-red-500
                   ${currentPage === item.key
                     ? 'text-red-500 bg-red-500/10 border-l-4 border-red-500'
-                    : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-gray-800/50'
                   }
                 `}
               >
