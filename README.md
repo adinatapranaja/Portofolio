@@ -209,7 +209,7 @@ This project is open source and available under the [MIT License](LICENSE).
 - **Email**: adinata.alaudin@ui.ac.id
 - **LinkedIn**: [linkedin.com/in/adinataap](https://linkedin.com/in/adinataap)
 - **GitHub**: [github.com/adinatapranaja](https://github.com/adinatapranaja)
-- **Instagram**: [@adinataap](https://instagram.com/adinataapranaja)
+- **Instagram**: [@adinatapranaja](https://instagram.com/adinataapranaja)
 
 ---
 
