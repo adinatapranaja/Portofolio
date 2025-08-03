@@ -126,7 +126,7 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-white to-red-400 bg-clip-text text-transparent">
+              <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
                 Contact Information
               </h2>
               <div className="space-y-6">
@@ -146,7 +146,7 @@ const Contact = () => {
                       <p className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
                         {info.value}
                       </p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-600 dark:text-gray-500">
                         {info.description}
                       </p>
                     </div>
@@ -180,12 +180,12 @@ const Contact = () => {
             </div>
 
             {/* Availability Status */}
-            <div className="bg-gradient-to-r from-green-900/20 to-green-800/20 rounded-lg p-6 border border-green-600/30">
+            <div className="bg-gradient-to-r from-green-100/50 to-green-200/30 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-6 border border-green-400/50 dark:border-green-600/30">
               <div className="flex items-center space-x-3 mb-3">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <h3 className="text-lg font-semibold text-green-400">Currently Available</h3>
+                <h3 className="text-lg font-semibold text-green-600 dark:text-green-400">Currently Available</h3>
               </div>
-              <p className="text-gray-300">
+              <p className="text-gray-700 dark:text-gray-300">
                 I'm currently open to new opportunities and interesting projects. 
                 Feel free to reach out if you'd like to work together!
               </p>
@@ -197,10 +197,10 @@ const Contact = () => {
             <h2 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">Send Message</h2>
             
             {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-green-900/30 border border-green-600/50 rounded-lg">
+              <div className="mb-6 p-4 bg-green-100/50 dark:bg-green-900/30 border border-green-400/50 dark:border-green-600/50 rounded-lg">
                 <div className="flex items-center space-x-2">
-                  <span className="text-green-400">✅</span>
-                  <span className="text-green-300">Message sent successfully! I'll get back to you soon.</span>
+                  <span className="text-green-600 dark:text-green-400">✅</span>
+                  <span className="text-green-700 dark:text-green-300">Message sent successfully! I'll get back to you soon.</span>
                 </div>
               </div>
             )}
@@ -231,25 +231,25 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Subject</label>
+                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">Subject</label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
                   placeholder="Topik diskusi"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Message *</label>
+                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">Message *</label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors resize-none placeholder-gray-400"
+                  className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors resize-none placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
                   placeholder="Ceritakan tentang proyek Anda atau sekedar menyapa..."
                 />
               </div>
@@ -276,7 +276,7 @@ const Contact = () => {
               </button>
             </div>
 
-            <div className="mt-6 text-center text-sm text-gray-400">
+            <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
               <p>Form responses will be sent to my email. I'll get back to you within 24 hours!</p>
             </div>
           </div>
@@ -284,7 +284,7 @@ const Contact = () => {
 
         {/* FAQ Section */}
         <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-white to-red-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
             Frequently Asked Questions
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -306,9 +306,9 @@ const Contact = () => {
                 answer: "Yes! I'm open to freelance projects, especially those involving React, Node.js, and modern web technologies. Let's discuss your project requirements."
               }
             ].map((faq, index) => (
-              <div key={index} className="bg-gray-900/30 rounded-lg p-6 border border-gray-700 backdrop-blur-sm">
-                <h3 className="font-semibold text-lg mb-3 text-red-400">{faq.question}</h3>
-                <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+              <div key={index} className="bg-gray-200/30 dark:bg-gray-900/30 rounded-lg p-6 border border-gray-300 dark:border-gray-700 backdrop-blur-sm">
+                <h3 className="font-semibold text-lg mb-3 text-red-500 dark:text-red-400">{faq.question}</h3>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
               </div>
             ))}
           </div>
