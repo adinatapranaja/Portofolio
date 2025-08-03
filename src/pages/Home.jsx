@@ -79,8 +79,8 @@ const Home = ({ setCurrentPage }) => {
 
               <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl">
                 Mahasiswa S1 Computer Science Universitas Indonesia & Purwadhika Full Stack Graduate. 
-                Passionate about crafting digital experiences with code and creativity. Specialized in React.js, 
-                Firebase, and modern web technologies to build scalable, user-focused applications.
+                Berfokus pada pengembangan aplikasi web modern dengan React.js, Firebase, dan teknologi terkini. 
+                Senang mengeksplorasi teknologi baru dan membangun solusi yang berdampak positif.
               </p>
 
               {/* CTA Buttons */}

@@ -214,7 +214,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
-                  placeholder="Adinata Alaudin Pranaja"
+                  placeholder="Nama Lengkap"
                 />
               </div>
 
@@ -226,7 +226,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
-                  placeholder="adinata.alaudin@ui.ac.id"
+                  placeholder="Email Anda"
                 />
               </div>
 
@@ -238,7 +238,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-400"
-                  placeholder="What's this about?"
+                  placeholder="Topik diskusi"
                 />
               </div>
 
@@ -250,7 +250,7 @@ const Contact = () => {
                   onChange={handleChange}
                   rows={6}
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors resize-none placeholder-gray-400"
-                  placeholder="Tell me about your project or just say hello..."
+                  placeholder="Ceritakan tentang proyek Anda atau sekedar menyapa..."
                 />
               </div>
 

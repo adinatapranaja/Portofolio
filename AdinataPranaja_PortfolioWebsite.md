@@ -137,7 +137,7 @@ src/
 
 ## Deployment & Hosting
 
-- **Repository**: https://github.com/adinatapranaja/OHV1
+- **Repository**: https://github.com/adinatapranaja/OH
 - **Live Demo**: [Portfolio Website URL]
 - **Build Tool**: npm run build
 - **Hosting**: GitHub Pages/Vercel

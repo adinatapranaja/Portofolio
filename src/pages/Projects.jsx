@@ -40,8 +40,8 @@ const Projects = () => {
             My Galleria
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            A showcase of my development journey featuring QR Events, portfolio websites, Networking, and modern web applications. 
-            Each project demonstrates my expertise in React.js, Firebase, and user-centered design principles.
+            Koleksi proyek yang telah saya kerjakan dalam perjalanan sebagai Full Stack Developer. 
+            Setiap proyek menunjukkan keahlian saya dalam React.js, Firebase, dan implementasi solusi teknologi modern.
           </p>
         </div>
       </div>

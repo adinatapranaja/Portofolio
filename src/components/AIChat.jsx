@@ -40,7 +40,7 @@ INFORMASI LENGKAP TENTANG ADINATA:
 - Nama Lengkap: Adinata Alaudin Pranaja
 - Profesi: Full Stack Developer / Frontend Specialist / Backend Engineer
 - Lokasi: Depok, Indonesia  
-- Tagline: "Crafting digital experiences with code and creativity"
+- Tagline: "Building innovative solutions through modern web technologies"
 - Status: Available untuk new opportunities (Remote/Project-based)
 
 🎓 PENDIDIKAN & BACKGROUND:
@@ -376,7 +376,7 @@ IMPORTANT NOTES:
 - Fokus: Software Engineering, Web Development, Data Science
 
 💻 **Expertise:** React.js (1 year expert), Node.js, Firebase, TailwindCSS
-🎯 **Tagline:** "Crafting digital experiences with code and creativity"
+🎯 **Tagline:** "Building innovative solutions through modern web technologies"
 🌟 **Personality:** Problem solver, detail-oriented, always eager to learn
 📍 **Status:** Available untuk new opportunities (Remote/Project-based)
 

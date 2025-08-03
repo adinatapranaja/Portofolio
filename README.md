@@ -101,7 +101,7 @@ const renderPage = () => {
 - **Memory Usage**: Lower due to component persistence
 - **Animation Quality**: Superior due to uninterrupted context
 
-This architectural decision demonstrates **advanced React state management** and **performance optimization thinking** beyond standard routing solutions.
+This architectural decision demonstrates **advanced React state management** and **performance optimization thinking** beyond conventional routing solutions.
 
 ## 📂 Project Structure
 
