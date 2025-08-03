@@ -143,7 +143,7 @@ const Home = ({ setCurrentPage }) => {
                 handle="adinatapranaja"
                 status="Available for work"
                 contactText="Contact Me"
-                avatarUrl="/img/Profile.jpg"
+                avatarUrl={`${process.env.PUBLIC_URL}/img/Profile.jpg`}
                 showUserInfo={true}
                 enableTilt={true}
                 enableMobileTilt={false}

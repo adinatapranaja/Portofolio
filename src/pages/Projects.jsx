@@ -6,25 +6,25 @@ const Projects = () => {
   // Project data with images and descriptions
   const projectsData = [
     {
-      image: "/img/Project1.jpg",
+      image: `${process.env.PUBLIC_URL}/img/Project1.jpg`,
       title: "QEvents - Event Management System",
       description: "Advanced event management platform featuring QR code technology for seamless attendee check-ins, real-time analytics dashboard, Firebase authentication, and comprehensive event administration.",
       tech: ["React.js", "Firebase", "Firestore", "Firebase Auth", "QR Code API", "Real-time DB", "JavaScript", "CSS3", "HTML5", "Responsive Design", "PWA", "Event Management", "Analytics Dashboard", "User Authentication", "Cloud Functions"]
     },
     {
-      image: "/img/Project2.jpg",
+      image: `${process.env.PUBLIC_URL}/img/Project2.jpg`,
       title: "Purwadhika Family Meetup",
       description: "Meetup with Full Stack Web Development Purwadhika Bootcamp Alumnis!",
       tech: ["Networking"]
     },
     {
-      image: "/img/Project3.jpg",
+      image: `${process.env.PUBLIC_URL}/img/Project3.jpg`,
       title: "Bali Bike Rental Booking System",
       description: "Full-stack web application for bike rental bookings with real-time availability, payment integration, and user management. Features responsive design and seamless user experience.",
       tech: ["React.js", "Node.js", "MongoDB", "Payment API"]
     },
     {
-      image: "/img/Project4.jpg",
+      image: `${process.env.PUBLIC_URL}/img/Project4.jpg`,
       title: "Full Stack Web Development Bootcamp",
       description: "Intensive 6-month bootcamp completion at Purwadhika, mastering modern web development technologies, collaborative coding practices, and real-world project development.",
       tech: ["JavaScript", "TypeScript", "HTML", "CSS", "React.js", "Next.js", "TailwindCSS", "SEO", "NextAuth", "Supabase", "State Management", "System Security", "Code Reviews", "Git", "Node.js", "Database Design"]
@@ -40,8 +40,8 @@ const Projects = () => {
             My Galleria
           </h1>
           <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Koleksi proyek yang telah saya kerjakan dalam perjalanan sebagai Full Stack Developer. 
-            Setiap proyek menunjukkan keahlian saya dalam React.js, Firebase, dan implementasi solusi teknologi modern.
+            A showcase of my development journey featuring QR Events, portfolio websites, Networking, and modern web applications. 
+            Each project demonstrates my expertise in React.js, Firebase, and user-centered design principles.
           </p>
         </div>
       </div>
@@ -76,7 +76,7 @@ const Projects = () => {
                 src={project.image} 
                 alt={project.title}
                 onError={(e) => {
-                  e.target.src = "/img/Profile.jpg"; // Fallback image
+                  e.target.src = `${process.env.PUBLIC_URL}/img/Profile.jpg`; // Fallback image
                 }}
               />
               <div className="scroll-stack-card-content">
