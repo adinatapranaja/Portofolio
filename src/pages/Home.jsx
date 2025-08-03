@@ -37,20 +37,20 @@ const Home = ({ setCurrentPage }) => {
     {
       title: 'Full Stack Developer',
       company: 'Freelance & Projects',
-      period: '2023 - Present',
+      period: '2024 - Present',
       description: 'Developing modern web applications using React.js, Firebase, and cutting-edge technologies. Specialized in QR code management systems and user experience optimization.'
     },
     {
       title: 'Bootcamp Graduate',
       company: 'Purwadhika Digital Technology School',
-      period: '2023 (6 months)',
+      period: '2024-2025 (6 months)',
       description: 'Completed intensive Full Stack Web Development program covering React, Node.js, database management, and modern development practices with hands-on projects.'
     },
     {
-      title: 'Computer Science Student',
+      title: 'Computer Science & Information System Student',
       company: 'Universitas Indonesia',
-      period: '2020 - Present',
-      description: 'Pursuing S1 in Computer Science with focus on Software Engineering, Web Development, and Data Science. Building strong academic foundation in programming and system design.'
+      period: '2023 - Present',
+      description: 'Pursuing S1 in Computer Science & Information System with focus on Software Engineering, Web Development, and Data Science. Building strong academic foundation in programming and system design.'
     }
   ];
 
