@@ -41,7 +41,7 @@ const Contact = () => {
       description: 'Send me an email anytime'
     },
     {
-      icon: '�',
+      icon: '📧',
       title: 'Personal Email',
       value: 'adinataap.pranaja@gmail.com',
       link: 'mailto:adinataap.pranaja@gmail.com',
@@ -88,7 +88,7 @@ const Contact = () => {
     { 
       icon: 'Instagram', 
       name: 'Instagram', 
-      url: 'https://instagram.com/adinataapranaja', 
+      url: 'https://instagram.com/adinatapranaja', 
       color: 'hover:text-pink-400',
       bgColor: 'hover:bg-pink-900/30'
     },
