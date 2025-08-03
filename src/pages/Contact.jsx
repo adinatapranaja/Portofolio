@@ -81,28 +81,28 @@ const Contact = () => {
     { 
       icon: 'Twitter', 
       name: 'Twitter', 
-      url: 'https://twitter.com/adinataap', 
+      url: 'https://twitter.com/', 
       color: 'hover:text-cyan-400',
       bgColor: 'hover:bg-cyan-900/30'
     },
     { 
       icon: 'Instagram', 
       name: 'Instagram', 
-      url: 'https://instagram.com/adinataap', 
+      url: 'https://instagram.com/adinataapranaja', 
       color: 'hover:text-pink-400',
       bgColor: 'hover:bg-pink-900/30'
     },
     { 
       icon: 'YouTube', 
       name: 'YouTube', 
-      url: 'https://youtube.com/@adinataap', 
+      url: 'https://youtube.com/', 
       color: 'hover:text-red-400',
       bgColor: 'hover:bg-red-900/30'
     },
     { 
       icon: 'Discord', 
       name: 'Discord', 
-      url: 'https://discord.gg/adinataap', 
+      url: 'https://discord.gg/adinataap_', 
       color: 'hover:text-purple-400',
       bgColor: 'hover:bg-purple-900/30'
     }
