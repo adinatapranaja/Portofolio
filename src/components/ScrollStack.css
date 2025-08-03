@@ -83,26 +83,39 @@
 
 .scroll-stack-card-content {
   padding: 2rem;
-  color: white;
+  color: rgb(31 41 55); /* text-gray-800 untuk light mode */
   height: 270px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
+/* Dark mode untuk card content */
+.dark .scroll-stack-card-content {
+  color: rgb(255 255 255); /* text-white untuk dark mode */
+}
+
 .scroll-stack-card h3 {
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffffff 0%, #dc2626 100%);
+  background: linear-gradient(135deg, #1f2937 0%, #dc2626 100%); /* Dark gray to red untuk light mode */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.3;
 }
 
+/* Dark mode untuk heading */
+.dark .scroll-stack-card h3 {
+  background: linear-gradient(135deg, #ffffff 0%, #dc2626 100%); /* White to red untuk dark mode */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .scroll-stack-card p {
-  color: rgba(255,255,255,0.8);
+  color: rgba(31, 41, 55, 0.8); /* text-gray-800 dengan opacity untuk light mode */
   line-height: 1.5;
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
@@ -112,6 +125,11 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+/* Dark mode untuk paragraph */
+.dark .scroll-stack-card p {
+  color: rgba(255,255,255,0.8); /* text-white dengan opacity untuk dark mode */
 }
 
 .scroll-stack-card .tech-tags {
@@ -138,14 +156,21 @@
 }
 
 .scroll-stack-card .tech-tag {
-  background: rgba(220, 38, 38, 0.2);
-  color: #fca5a5;
+  background: rgba(220, 38, 38, 0.15); /* Lighter background untuk light mode */
+  color: #991b1b; /* Darker red untuk light mode */
   padding: 0.25rem 0.6rem;
   border-radius: 1rem;
   font-size: 0.7rem;
   border: 1px solid rgba(220, 38, 38, 0.3);
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+/* Dark mode untuk tech tags */
+.dark .scroll-stack-card .tech-tag {
+  background: rgba(220, 38, 38, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(220, 38, 38, 0.3);
 }
 
 .scroll-stack-end {
