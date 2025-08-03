@@ -96,12 +96,12 @@ const Projects = () => {
       </div>
 
       {/* GitHub CTA Section */}
-      <div className="relative z-10 bg-gradient-to-br from-black via-gray-900 to-red-900/20">
+      <div className="relative z-10 bg-gradient-to-br from-gray-100/50 via-gray-200/30 to-red-100/20 dark:from-black dark:via-gray-900 dark:to-red-900/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center bg-gradient-to-r from-gray-900/50 to-red-900/20 rounded-2xl p-8 backdrop-blur-sm border border-gray-700/50">
-            <h3 className="text-2xl font-bold mb-4">Explore More on GitHub</h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Check out my GitHub profile for the complete codebase of QR Events Pro, React component libraries, 
+          <div className="text-center bg-gradient-to-r from-white/70 to-gray-100/50 dark:from-gray-900/50 dark:to-red-900/20 rounded-2xl p-8 backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50">
+            <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Explore More on GitHub</h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+              Check out my GitHub profile for the complete codebase of QEvents, React component libraries, 
               and other projects. I'm always building something new with modern web technologies!
             </p>
             <a 
