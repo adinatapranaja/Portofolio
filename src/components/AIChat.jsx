@@ -38,15 +38,15 @@ INFORMASI LENGKAP TENTANG ADINATA:
 
 👤 PROFIL PERSONAL:
 - Nama Lengkap: Adinata Alaudin Pranaja
-- Profesi: Full Stack Developer / Frontend Specialist / Backend Engineer
+- Profesi: Full Stack Developer (2024-present)
 - Lokasi: Depok, Indonesia  
 - Tagline: "Building innovative solutions through modern web technologies"
 - Status: Available untuk new opportunities (Remote/Project-based)
 
 🎓 PENDIDIKAN & BACKGROUND:
-- Mahasiswa S1 Computer Science, Universitas Indonesia (2020-present)
+- Mahasiswa S1 Computer Science & Information System, Universitas Indonesia (2023-present)
 - Fokus: Software Engineering & Web Development, Data Science
-- Bootcamp: Purwadhika Full Stack Web Development (6 bulan, 2023)
+- Bootcamp Graduate: Purwadhika Full Stack Web Development (6 months, 2024-2025)
 - Curriculum: HTML/CSS, React JS, Next JS, SEO Fundamental, NextAuth & Supabase, State Management, System Security, Writing Robust Code, Code Reviews, Task Scheduling, Application Deployment
 
 💻 TECHNICAL SKILLS & EXPERTISE:

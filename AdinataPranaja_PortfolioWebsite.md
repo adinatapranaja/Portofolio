@@ -2,27 +2,7 @@
 
 ## Deskripsi Proyek
 
-Website portfolio modern dan interaktif yang mena## Deployment & Hosting
-
-- **Repository**: https://github.com/adinatapranaja/OH
-- **Live Demo**: https://adinata-portofolio.vercel.app
-- **Build Tool**: npm run build
-- **Hosting**: Vercel (Production)
-
-### **Environment Variables Setup (Vercel)**
-Untuk mengaktifkan AI Chatbot di production, perlu set environment variables di Vercel:
-
-1. **REACT_APP_GEMINI_API_KEY**: Google Gemini API key untuk AI chatbot
-2. **REACT_APP_AI_TEMPERATURE**: 0.7 (optional)
-3. **REACT_APP_AI_MAX_TOKENS**: 1000 (optional)
-4. **REACT_APP_AI_CACHE_TTL**: 300000 (optional)
-
-### **Cara Set Environment Variables di Vercel:**
-1. Buka [Vercel Dashboard](https://vercel.com/dashboard)
-2. Pilih project "adinata-portofolio"
-3. Go to Settings → Environment Variables
-4. Add variable: REACT_APP_GEMINI_API_KEY dengan value API key
-5. Redeploy project untuk apply changesn perjalanan saya sebagai Full Stack Developer dan mahasiswa Ilmu Komputer di Universitas Indonesia. Website ini dibangun dengan teknologi terkini untuk memberikan pengalaman pengguna yang optimal dan mendemonstrasikan kemampuan teknis saya.
+Website portfolio modern dan interaktif yang menampilkan perjalanan saya sebagai Full Stack Developer dan mahasiswa Computer Science & Information System di Universitas Indonesia. Website ini dibangun dengan teknologi terkini untuk memberikan pengalaman pengguna yang optimal dan mendemonstrasikan kemampuan teknis saya.
 
 ## Fitur Utama
 
