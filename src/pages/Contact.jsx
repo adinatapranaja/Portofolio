@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import Waves from '../components/Waves';
 import SocialIcons from '../components/SocialIcons';
+import FloatingShapes from '../components/FloatingShapes';
+import { useTheme } from '../context/ThemeContext';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  const { isDark } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,17 +16,50 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // EmailJS configuration from environment variables
+      const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+      const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+      
+      if (!serviceID || !templateID || !publicKey) {
+        throw new Error('EmailJS configuration missing. Please check environment variables.');
+      }
+      
+      // Log configuration for debugging
+      console.log('EmailJS Config:', {
+        serviceID,
+        templateID,
+        publicKey: publicKey ? 'Present' : 'Missing'
+      });
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        subject: formData.subject
+      };
+
+      console.log('Template Params:', templateParams);
+
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      setIsSubmitting(false);
       
       setTimeout(() => setSubmitStatus(null), 5000);
-    }, 2000);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitStatus('error');
+      
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -34,28 +71,44 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: '📧',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.749L12 10.855l9.615-7.034h.749c.904 0 1.636.732 1.636 1.636z" fill="currentColor"/>
+        </svg>
+      ),
       title: 'Email',
       value: 'adinata.alaudin@ui.ac.id',
       link: 'mailto:adinata.alaudin@ui.ac.id',
       description: 'Send me an email anytime'
     },
     {
-      icon: '📧',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.749L12 10.855l9.615-7.034h.749c.904 0 1.636.732 1.636 1.636z" fill="currentColor"/>
+        </svg>
+      ),
       title: 'Personal Email',
       value: 'adinataap.pranaja@gmail.com',
       link: 'mailto:adinataap.pranaja@gmail.com',
       description: 'Alternative email address'
     },
     {
-      icon: '📍',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+        </svg>
+      ),
       title: 'Location',
       value: 'Depok, Indonesia',
       link: '#',
       description: 'Available for remote work & projects'
     },
     {
-      icon: '💼',
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor"/>
+        </svg>
+      ),
       title: 'LinkedIn',
       value: 'linkedin.com/in/adinataap',
       link: 'https://linkedin.com/in/adinataap',
@@ -109,8 +162,32 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-100 to-red-100/20 dark:from-black dark:via-gray-900 dark:to-red-900/20 text-black dark:text-white pt-24 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div style={{
+      minHeight: '100vh',
+      background: isDark 
+        ? 'linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 50%, #1a1a2e 100%)' 
+        : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%)',
+      position: 'relative',
+      overflow: 'hidden',
+      transition: 'all 0.3s ease',
+      color: isDark ? '#ffffff' : '#1e293b',
+      paddingTop: '6rem'
+    }}>
+      {/* Background Pattern */}
+      <div style={{
+        content: '',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='${isDark ? '0.02' : '0.04'}'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        pointerEvents: 'none'
+      }}></div>
+      
+      {/* Floating 3D Shapes */}
+      <FloatingShapes />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
@@ -136,9 +213,11 @@ const Contact = () => {
                     href={info.link}
                     className="flex items-start space-x-4 p-4 bg-gray-200/30 dark:bg-gray-900/30 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-red-500/50 transition-all duration-300 group backdrop-blur-sm"
                   >
-                    <span className="text-3xl group-hover:scale-110 transition-transform duration-300">
-                      {info.icon}
-                    </span>
+                    <div className="text-red-500 group-hover:scale-110 transition-transform duration-300 flex-shrink-0 w-12 h-12 flex items-center justify-center">
+                      <div className="w-6 h-6">
+                        {info.icon}
+                      </div>
+                    </div>
                     <div>
                       <h3 className="font-semibold text-lg text-gray-900 dark:text-white group-hover:text-red-500 transition-colors">
                         {info.title}
@@ -205,7 +284,16 @@ const Contact = () => {
               </div>
             )}
 
-            <div className="space-y-6">
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-100/50 dark:bg-red-900/30 border border-red-400/50 dark:border-red-600/50 rounded-lg">
+                <div className="flex items-center space-x-2">
+                  <span className="text-red-600 dark:text-red-400">❌</span>
+                  <span className="text-red-700 dark:text-red-300">Failed to send message. Please try again or contact me directly.</span>
+                </div>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">Name *</label>
                 <input
@@ -255,7 +343,7 @@ const Contact = () => {
               </div>
 
               <button
-                onClick={handleSubmit}
+                type="submit"
                 disabled={isSubmitting || !formData.name || !formData.email || !formData.message}
                 className={`
                   w-full py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform
@@ -274,7 +362,7 @@ const Contact = () => {
                   'Send Message'
                 )}
               </button>
-            </div>
+            </form>
 
             <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
               <p>Form responses will be sent to my email. I'll get back to you within 24 hours!</p>

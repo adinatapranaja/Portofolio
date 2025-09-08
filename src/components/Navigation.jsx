@@ -57,24 +57,28 @@ const Navigation = ({ currentPage, setCurrentPage }) => {
                 className="flex items-center space-x-2 md:space-x-3 group focus:outline-none focus:ring-2 focus:ring-red-500 rounded-lg p-2 transition-all duration-300"
               >
                 {/* Logo Icon/Symbol */}
-                <div className="relative w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center shadow-lg transform group-hover:scale-105 transition-all duration-300">
-                  <span className="text-white font-bold text-sm md:text-lg">A</span>
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-400/30 to-transparent rounded-lg"></div>
+                <div className="relative w-8 h-8 md:w-10 md:h-10 rounded-lg overflow-hidden shadow-lg transform group-hover:scale-105 transition-all duration-300">
+                  <img 
+                    src="/img/Profile.jpg" 
+                    alt="Adinata Profile" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-transparent rounded-lg"></div>
                 </div>
                 
                 {/* Logo Text - Hidden on small screens, visible on md+ */}
                 <div className="hidden sm:flex flex-col">
-                  <span className="text-base md:text-lg font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent group-hover:from-red-400 group-hover:to-red-600 transition-all duration-300">
+                  <span className="text-base md:text-lg font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-white dark:to-gray-300 bg-clip-text text-transparent group-hover:from-gray-600 group-hover:to-gray-800 dark:group-hover:from-gray-100 dark:group-hover:to-gray-400 transition-all duration-300">
                     Adinata AP
                   </span>
                   <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                    Portfolio
+                    Personal Portfolio
                   </span>
                 </div>
                 
                 {/* Mobile only - Just initials */}
                 <div className="sm:hidden">
-                  <span className="text-sm font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent group-hover:from-red-400 group-hover:to-red-600 transition-all duration-300">
+                  <span className="text-sm font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-white dark:to-gray-300 bg-clip-text text-transparent group-hover:from-gray-600 group-hover:to-gray-800 dark:group-hover:from-gray-100 dark:group-hover:to-gray-400 transition-all duration-300">
                     AP
                   </span>
                 </div>

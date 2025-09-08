@@ -1,8 +1,11 @@
 import React from 'react';
 import Waves from '../components/Waves';
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack';
+import FloatingShapes from '../components/FloatingShapes';
+import { useTheme } from '../context/ThemeContext';
 
 const Projects = () => {
+  const { isDark } = useTheme();
   // Project data with images and descriptions
   const projectsData = [
     {
@@ -32,9 +35,32 @@ const Projects = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-100 to-red-100/20 dark:from-black dark:via-gray-900 dark:to-red-900/20 text-black dark:text-white transition-colors duration-300">
+    <div style={{
+      minHeight: '100vh',
+      background: isDark 
+        ? 'linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 50%, #1a1a2e 100%)' 
+        : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%)',
+      position: 'relative',
+      overflow: 'hidden',
+      transition: 'all 0.3s ease',
+      color: isDark ? '#ffffff' : '#1e293b'
+    }}>
+      {/* Background Pattern */}
+      <div style={{
+        content: '',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='${isDark ? '0.02' : '0.04'}'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        pointerEvents: 'none'
+      }}></div>
+      
+      {/* Floating 3D Shapes */}
+      <FloatingShapes />
       {/* Header Section */}
-      <div className="pt-24 pb-16">
+      <div className="pt-24 pb-16 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
             My Galleria
@@ -47,7 +73,7 @@ const Projects = () => {
       </div>
 
       {/* ScrollStack Projects Section */}
-      <div className="relative">
+      <div className="relative z-10">
         {/* Auto Scroll Indicator */}
         <div className="absolute top-4 right-4 z-10 bg-white/70 dark:bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600">
           <div className="flex items-center space-x-2">

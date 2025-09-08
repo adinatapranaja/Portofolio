@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
-import Navigation from './components/Navigation';
+import AnimatedNavbar from './components/AnimatedNavbar';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
+import About from './pages/About';
 import Contact from './pages/Contact';
 import TargetCursor from './components/TargetCursor';
 import AIChat from './components/AIChat';
@@ -135,6 +136,8 @@ const App = () => {
     switch (currentPage) {
       case 'projects':
         return <Projects />;
+      case 'about':
+        return <About />;
       case 'contact':
         return <Contact />;
       default:
@@ -149,9 +152,9 @@ const App = () => {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+        <div className="min-h-screen text-white transition-colors duration-300">
           <SEOHead currentPage={currentPage} />
-          <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <AnimatedNavbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
           <main className="relative">
             {renderPage()}
           </main>
