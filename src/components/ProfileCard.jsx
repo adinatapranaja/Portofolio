@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
+import { useTheme } from '../context/ThemeContext';
 import "./ProfileCard.css";
 
 const DEFAULT_BEHIND_GRADIENT =
@@ -53,6 +54,7 @@ const ProfileCardComponent = ({
   showUserInfo = true,
   onContactClick,
 }) => {
+  const { isDark } = useTheme();
   const wrapRef = useRef(null);
   const cardRef = useRef(null);
 
@@ -276,8 +278,15 @@ const ProfileCardComponent = ({
         ? (behindGradient ?? DEFAULT_BEHIND_GRADIENT)
         : "none",
       "--inner-gradient": innerGradient ?? DEFAULT_INNER_GRADIENT,
+      // Theme-aware styles
+      "--card-bg": isDark 
+        ? 'linear-gradient(145deg, #141414 0%, #2F2F2F 100%)'
+        : 'linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%)',
+      "--text-primary": isDark ? '#ffffff' : '#1e293b',
+      "--text-secondary": isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(30, 41, 59, 0.8)',
+      "--text-muted": isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(30, 41, 59, 0.6)',
     }),
-    [iconUrl, grainUrl, showBehindGradient, behindGradient, innerGradient]
+    [iconUrl, grainUrl, showBehindGradient, behindGradient, innerGradient, isDark]
   );
 
   const handleContactClick = useCallback(() => {
@@ -285,13 +294,27 @@ const ProfileCardComponent = ({
   }, [onContactClick]);
 
   return (
-    <div
-      ref={wrapRef}
-      className={`pc-card-wrapper cursor-target ${className}`.trim()}
-      style={cardStyle}
-    >
-      <section ref={cardRef} className="pc-card">
-        <div className="pc-inside">
+    <>
+      <style>
+        {`
+          .pc-inside-override {
+            background-image: ${isDark 
+              ? 'linear-gradient(145deg, #141414 0%, #2F2F2F 100%) !important'
+              : 'linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%) !important'
+            };
+            background-color: ${isDark ? 'rgba(20, 20, 20, 0.95) !important' : 'rgba(248, 250, 252, 0.95) !important'};
+          }
+        `}
+      </style>
+      <div
+        ref={wrapRef}
+        className={`pc-card-wrapper cursor-target ${className}`.trim()}
+        style={cardStyle}
+      >
+        <section ref={cardRef} className="pc-card">
+          <div 
+            className="pc-inside pc-inside-override"
+          >
           <div className="pc-shine" />
           <div className="pc-glare" />
           <div className="pc-content pc-avatar-content">
@@ -321,8 +344,12 @@ const ProfileCardComponent = ({
                     />
                   </div>
                   <div className="pc-user-text">
-                    <div className="pc-handle">@{handle}</div>
-                    <div className="pc-status">{status}</div>
+                    <div className="pc-handle">
+                      @{handle}
+                    </div>
+                    <div className="pc-status">
+                      {status}
+                    </div>
                   </div>
                 </div>
                 <button
@@ -346,6 +373,7 @@ const ProfileCardComponent = ({
         </div>
       </section>
     </div>
+    </>
   );
 };
 

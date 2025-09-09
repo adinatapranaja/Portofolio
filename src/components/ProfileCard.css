@@ -510,3 +510,46 @@
     border-radius: 50px;
   }
 }
+
+/* Theme-aware text styling overrides */
+/* Light mode text colors */
+body:not(.dark) .pc-details h3 {
+  background-image: linear-gradient(to bottom, #1a1a1a, #dc2626) !important;
+}
+
+body:not(.dark) .pc-details p {
+  background-image: linear-gradient(to bottom, #1a1a1a, #dc2626) !important;
+}
+
+body:not(.dark) .pc-handle {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+body:not(.dark) .pc-status {
+  color: #16a34a !important;
+}
+
+body:not(.dark) .pc-contact-btn {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Dark mode text colors (existing behavior) */
+.dark .pc-details h3 {
+  background-image: linear-gradient(to bottom, #fff, #dc2626) !important;
+}
+
+.dark .pc-details p {
+  background-image: linear-gradient(to bottom, #fff, #dc2626) !important;
+}
+
+.dark .pc-handle {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark .pc-status {
+  color: #22c55e !important;
+}
+
+.dark .pc-contact-btn {
+  color: rgba(255, 255, 255, 0.9) !important;
+}

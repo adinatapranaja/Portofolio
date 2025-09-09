@@ -37,11 +37,13 @@ const Projects = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%)',
+      background: isDark 
+        ? 'linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%)'
+        : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%)',
       position: 'relative',
       overflow: 'hidden',
       transition: 'all 0.3s ease',
-      color: '#ffffff'
+      color: isDark ? '#ffffff' : '#1e293b'
     }}>
       {/* Background Pattern */}
       <div style={{
@@ -51,7 +53,9 @@ const Projects = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundImage: isDark 
+          ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          : `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23dc2626' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         pointerEvents: 'none'
       }}></div>
       
@@ -60,10 +64,20 @@ const Projects = () => {
       {/* Header Section */}
       <div className="pt-24 pb-16 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
+          <h1 
+            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r bg-clip-text text-transparent"
+            style={{
+              backgroundImage: isDark 
+                ? 'linear-gradient(to right, #ffffff, #ef4444)'
+                : 'linear-gradient(to right, #1f2937, #dc2626)'
+            }}
+          >
             My Galleria
           </h1>
-          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p 
+            className="text-xl max-w-3xl mx-auto leading-relaxed"
+            style={{ color: isDark ? '#d1d5db' : '#475569' }}
+          >
             A showcase of my development journey featuring QR Events, portfolio websites, Networking, and modern web applications. 
             Each project demonstrates my expertise in React.js, Firebase, and user-centered design principles.
           </p>
@@ -120,11 +134,34 @@ const Projects = () => {
       </div>
 
       {/* GitHub CTA Section */}
-      <div className="relative z-10 bg-gradient-to-br from-gray-100/50 via-gray-200/30 to-red-100/20 dark:from-black dark:via-gray-900 dark:to-red-900/20">
+      <div 
+        className="relative z-10"
+        style={{
+          background: isDark 
+            ? 'linear-gradient(to bottom right, #000000, #111827, rgba(127, 29, 29, 0.2))'
+            : 'linear-gradient(to bottom right, rgba(241, 245, 249, 0.5), rgba(226, 232, 240, 0.3), rgba(254, 226, 226, 0.2))'
+        }}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center bg-gradient-to-r from-white/70 to-gray-100/50 dark:from-gray-900/50 dark:to-red-900/20 rounded-2xl p-8 backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50">
-            <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Explore More on GitHub</h3>
-            <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+          <div 
+            className="text-center rounded-2xl p-8 backdrop-blur-sm border"
+            style={{
+              background: isDark 
+                ? 'linear-gradient(to right, rgba(17, 24, 39, 0.5), rgba(127, 29, 29, 0.2))'
+                : 'linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(241, 245, 249, 0.5))',
+              borderColor: isDark ? 'rgba(55, 65, 81, 0.5)' : 'rgba(209, 213, 219, 0.5)'
+            }}
+          >
+            <h3 
+              className="text-2xl font-bold mb-4"
+              style={{ color: isDark ? '#ffffff' : '#1f2937' }}
+            >
+              Explore More on GitHub
+            </h3>
+            <p 
+              className="mb-6 max-w-2xl mx-auto"
+              style={{ color: isDark ? '#d1d5db' : '#374151' }}
+            >
               Check out my GitHub profile for the complete codebase of QEvents, React component libraries, 
               and other projects. I'm always building something new with modern web technologies!
             </p>
@@ -132,7 +169,17 @@ const Projects = () => {
               href="https://github.com/adinatapranaja"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
+              className="px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
+              style={{
+                backgroundColor: isDark ? '#374151' : '#e5e7eb',
+                color: isDark ? '#ffffff' : '#1f2937'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = isDark ? '#4b5563' : '#d1d5db';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = isDark ? '#374151' : '#e5e7eb';
+              }}
             >
               Visit GitHub Profile
             </a>

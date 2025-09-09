@@ -23,11 +23,18 @@
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
-    color: #ffffff;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+    color: #1e293b;
     overflow-x: hidden;
     cursor: none; /* Hide default cursor */
     min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  /* Dark mode body styling */
+  .dark body {
+    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
+    color: #ffffff;
   }
   
   code {
@@ -48,7 +55,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #1a1a1a;
+    background: #e5e7eb;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -58,6 +65,11 @@
 
   ::-webkit-scrollbar-thumb:hover {
     background: #b91c1c;
+  }
+
+  /* Dark mode scrollbar */
+  .dark ::-webkit-scrollbar-track {
+    background: #1a1a1a;
   }
 }
 

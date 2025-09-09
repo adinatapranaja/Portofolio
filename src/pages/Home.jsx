@@ -66,11 +66,13 @@ const Home = ({ setCurrentPage }) => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%)',
+      background: isDark 
+        ? 'linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%)'
+        : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%)',
       position: 'relative',
       overflow: 'hidden',
       transition: 'all 0.3s ease',
-      color: '#ffffff'
+      color: isDark ? '#ffffff' : '#1e293b'
     }}>
       {/* Background Pattern */}
       <div style={{
@@ -80,7 +82,9 @@ const Home = ({ setCurrentPage }) => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundImage: isDark 
+          ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          : `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23dc2626' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         pointerEvents: 'none'
       }}></div>
       
@@ -117,20 +121,56 @@ const Home = ({ setCurrentPage }) => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => setCurrentPage('projects')}
-                  className="cursor-target bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-600/25"
+                  className="cursor-target px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-white"
+                  style={{
+                    backgroundColor: '#dc2626'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#b91c1c';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#dc2626';
+                  }}
                 >
                   View My Gallery
                 </button>
                 <button
                   onClick={() => setCurrentPage('contact')}
-                  className="cursor-target border-2 border-gray-600 hover:border-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:bg-white/5"
+                  className="cursor-target px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300"
+                  style={{
+                    border: `2px solid ${isDark ? '#6b7280' : '#9ca3af'}`,
+                    color: isDark ? '#ffffff' : '#374151',
+                    backgroundColor: 'transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (isDark) {
+                      e.target.style.borderColor = '#ffffff';
+                      e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                    } else {
+                      e.target.style.borderColor = '#1f2937';
+                      e.target.style.backgroundColor = 'rgba(31, 41, 59, 0.05)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.borderColor = isDark ? '#6b7280' : '#9ca3af';
+                    e.target.style.backgroundColor = 'transparent';
+                  }}
                 >
                   Get in Touch
                 </button>
                 <a
                   href="/img/Adinata%20Alaudin%20Pranaja%20CV.pdf"
                   download="CV_Adinata_Alaudin_Pranaja.pdf"
-                  className="cursor-target inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-600/25 text-white no-underline"
+                  className="cursor-target inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-white no-underline"
+                  style={{
+                    backgroundColor: '#2563eb'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#1d4ed8';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#2563eb';
+                  }}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -152,7 +192,16 @@ const Home = ({ setCurrentPage }) => {
                       <a
                         key={index}
                         href={social.href}
-                        className="cursor-target text-2xl hover:text-red-400 transition-colors duration-300 hover:scale-110 transform"
+                        className="cursor-target text-2xl transition-colors duration-300 hover:scale-110 transform"
+                        style={{ 
+                          color: isDark ? '#d1d5db' : '#6b7280'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.color = isDark ? '#f87171' : '#dc2626';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.color = isDark ? '#d1d5db' : '#6b7280';
+                        }}
                         aria-label={social.label}
                       >
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
@@ -228,18 +277,57 @@ const Home = ({ setCurrentPage }) => {
       {/* Experience Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
+          <h2 
+            className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r bg-clip-text text-transparent"
+            style={{
+              backgroundImage: isDark 
+                ? 'linear-gradient(to right, #ffffff, #ef4444)'
+                : 'linear-gradient(to right, #1f2937, #dc2626)'
+            }}
+          >
             Experience
           </h2>
           <div className="space-y-8">
             {experiences.map((exp, index) => (
-              <div key={index} className="bg-gray-200/30 dark:bg-gray-900/30 rounded-lg p-6 border-l-4 border-red-500 backdrop-blur-sm hover:bg-gray-200/50 dark:hover:bg-gray-900/50 transition-all duration-300">
+              <div 
+                key={index} 
+                className="rounded-lg p-6 border-l-4 backdrop-blur-sm transition-all duration-300"
+                style={{
+                  backgroundColor: isDark ? 'rgba(17, 24, 39, 0.3)' : 'rgba(15, 23, 42, 0.1)',
+                  borderLeftColor: isDark ? '#ef4444' : '#dc2626'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = isDark ? 'rgba(17, 24, 39, 0.5)' : 'rgba(15, 23, 42, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = isDark ? 'rgba(17, 24, 39, 0.3)' : 'rgba(15, 23, 42, 0.1)';
+                }}
+              >
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{exp.title}</h3>
-                  <span className="text-red-500 font-medium">{exp.period}</span>
+                  <h3 
+                    className="text-xl font-bold"
+                    style={{ color: isDark ? '#ffffff' : '#1f2937' }}
+                  >
+                    {exp.title}
+                  </h3>
+                  <span 
+                    className="font-medium"
+                    style={{ color: isDark ? '#ef4444' : '#dc2626' }}
+                  >
+                    {exp.period}
+                  </span>
                 </div>
-                <p className="text-lg text-gray-700 dark:text-gray-300 mb-2">{exp.company}</p>
-                <p className="text-gray-600 dark:text-gray-400">{exp.description}</p>
+                <p 
+                  className="text-lg mb-2"
+                  style={{ color: isDark ? '#d1d5db' : '#374151' }}
+                >
+                  {exp.company}
+                </p>
+                <p 
+                  style={{ color: isDark ? '#9ca3af' : '#6b7280' }}
+                >
+                  {exp.description}
+                </p>
               </div>
             ))}
           </div>

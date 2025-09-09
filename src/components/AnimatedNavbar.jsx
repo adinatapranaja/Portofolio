@@ -51,17 +51,28 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
     zIndex: 1000,
     backdropFilter: isScrolled ? 'blur(20px)' : 'blur(15px) saturate(1.2)',
     background: isScrolled 
-      ? 'linear-gradient(135deg, rgba(15, 20, 25, 0.95) 0%, rgba(26, 31, 46, 0.95) 50%, rgba(15, 20, 25, 0.95) 100%)'
-      : 'linear-gradient(135deg, rgba(15, 20, 25, 0.8) 0%, rgba(26, 31, 46, 0.8) 50%, rgba(15, 20, 25, 0.8) 100%)',
-    border: '1px solid rgba(239, 68, 68, 0.2)',
+      ? (isDark 
+          ? 'linear-gradient(135deg, rgba(15, 20, 25, 0.95) 0%, rgba(26, 31, 46, 0.95) 50%, rgba(15, 20, 25, 0.95) 100%)'
+          : 'linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(226, 232, 240, 0.95) 50%, rgba(241, 245, 249, 0.95) 100%)')
+      : (isDark 
+          ? 'linear-gradient(135deg, rgba(15, 20, 25, 0.8) 0%, rgba(26, 31, 46, 0.8) 50%, rgba(15, 20, 25, 0.8) 100%)'
+          : 'linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(226, 232, 240, 0.8) 50%, rgba(241, 245, 249, 0.8) 100%)'),
+    border: `1px solid ${isDark ? 'rgba(239, 68, 68, 0.2)' : 'rgba(220, 38, 38, 0.3)'}`,
     borderRadius: '24px',
     padding: '12px 20px',
-    boxShadow: `
-      0 8px 32px rgba(0, 0, 0, 0.4),
-      0 2px 8px rgba(239, 68, 68, 0.15),
-      0 0 20px rgba(26, 31, 46, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1)
-    `,
+    boxShadow: isDark
+      ? `
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(239, 68, 68, 0.15),
+        0 0 20px rgba(26, 31, 46, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1)
+      `
+      : `
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(220, 38, 38, 0.15),
+        0 0 20px rgba(226, 232, 240, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8)
+      `,
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     animation: 'navbarFloat 6s ease-in-out infinite',
     minWidth: '300px',
@@ -180,7 +191,10 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
           .logo-text {
             font-size: 16px;
             font-weight: 600;
-            background: linear-gradient(135deg, #ffffff, #ef4444);
+            background: ${isDark 
+              ? 'linear-gradient(135deg, #ffffff, #ef4444)'
+              : 'linear-gradient(135deg, #1f2937, #dc2626)'
+            };
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -200,7 +214,7 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
             padding: 10px 16px;
             border-radius: 12px;
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.8);
+            color: ${isDark ? 'rgba(255, 255, 255, 0.8)' : 'rgba(31, 41, 59, 0.8)'};
             font-weight: 500;
             font-size: 14px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -218,7 +232,10 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(220, 38, 38, 0.3));
+            background: ${isDark 
+              ? 'linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(220, 38, 38, 0.3))'
+              : 'linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(185, 28, 28, 0.2))'
+            };
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: -1;
             border-radius: 12px;
@@ -229,15 +246,24 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
           }
 
           .nav-link:hover {
-            color: white;
+            color: ${isDark ? 'white' : '#1f2937'};
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            box-shadow: ${isDark 
+              ? '0 4px 12px rgba(239, 68, 68, 0.3)'
+              : '0 4px 12px rgba(220, 38, 38, 0.2)'
+            };
           }
 
           .nav-link.active {
-            color: white;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(220, 38, 38, 0.4));
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+            color: ${isDark ? 'white' : '#1f2937'};
+            background: ${isDark 
+              ? 'linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(220, 38, 38, 0.4))'
+              : 'linear-gradient(135deg, rgba(220, 38, 38, 0.3), rgba(185, 28, 28, 0.3))'
+            };
+            box-shadow: ${isDark 
+              ? '0 4px 12px rgba(239, 68, 68, 0.2)'
+              : '0 4px 12px rgba(220, 38, 38, 0.15)'
+            };
             animation: buttonGlow 3s ease-in-out infinite;
           }
 
@@ -254,9 +280,9 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
           .theme-toggle {
             padding: 10px;
             border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
+            background: ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(31, 41, 59, 0.1)'};
             border: none;
-            color: white;
+            color: ${isDark ? 'white' : '#1f2937'};
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 16px;
@@ -264,7 +290,10 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
           }
 
           .theme-toggle:hover {
-            background: rgba(239, 68, 68, 0.2);
+            background: ${isDark 
+              ? 'rgba(239, 68, 68, 0.2)'
+              : 'rgba(220, 38, 38, 0.15)'
+            };
             transform: scale(1.1) rotate(180deg);
           }
 

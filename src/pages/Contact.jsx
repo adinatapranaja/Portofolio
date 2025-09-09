@@ -164,11 +164,13 @@ const Contact = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%)',
+      background: isDark 
+        ? 'linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%)'
+        : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%)',
       position: 'relative',
       overflow: 'hidden',
       transition: 'all 0.3s ease',
-      color: '#ffffff',
+      color: isDark ? '#ffffff' : '#1e293b',
       paddingTop: '6rem'
     }}>
       {/* Background Pattern */}
@@ -188,10 +190,20 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
+          <h1 
+            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r bg-clip-text text-transparent"
+            style={{
+              backgroundImage: isDark 
+                ? 'linear-gradient(to right, #ffffff, #ef4444)'
+                : 'linear-gradient(to right, #1f2937, #dc2626)'
+            }}
+          >
             Get In Touch
           </h1>
-          <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p 
+            className="text-xl max-w-3xl mx-auto leading-relaxed"
+            style={{ color: isDark ? '#d1d5db' : '#475569' }}
+          >
             Have a project in mind or just want to chat about technology? 
             I'd love to hear from you. Let's create something amazing together!
           </p>
@@ -201,7 +213,14 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
+              <h2 
+                className="text-3xl font-bold mb-8 bg-gradient-to-r bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: isDark 
+                    ? 'linear-gradient(to right, #ffffff, #ef4444)'
+                    : 'linear-gradient(to right, #1f2937, #dc2626)'
+                }}
+              >
                 Contact Information
               </h2>
               <div className="space-y-6">
@@ -209,21 +228,45 @@ const Contact = () => {
                   <a
                     key={index}
                     href={info.link}
-                    className="flex items-start space-x-4 p-4 bg-gray-200/30 dark:bg-gray-900/30 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-red-500/50 transition-all duration-300 group backdrop-blur-sm"
+                    className="flex items-start space-x-4 p-4 rounded-lg border transition-all duration-300 group backdrop-blur-sm"
+                    style={{
+                      backgroundColor: isDark ? 'rgba(17, 24, 39, 0.3)' : 'rgba(248, 250, 252, 0.6)',
+                      borderColor: isDark ? '#374151' : '#d1d5db'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.borderColor = isDark ? 'rgba(239, 68, 68, 0.5)' : 'rgba(220, 38, 38, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.borderColor = isDark ? '#374151' : '#d1d5db';
+                    }}
                   >
-                    <div className="text-red-500 group-hover:scale-110 transition-transform duration-300 flex-shrink-0 w-12 h-12 flex items-center justify-center">
+                    <div 
+                      className="group-hover:scale-110 transition-transform duration-300 flex-shrink-0 w-12 h-12 flex items-center justify-center"
+                      style={{ color: isDark ? '#ef4444' : '#dc2626' }}
+                    >
                       <div className="w-6 h-6">
                         {info.icon}
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white group-hover:text-red-500 transition-colors">
+                      <h3 
+                        className="font-semibold text-lg transition-colors"
+                        style={{ 
+                          color: isDark ? '#ffffff' : '#1f2937'
+                        }}
+                      >
                         {info.title}
                       </h3>
-                      <p className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                      <p 
+                        className="transition-colors"
+                        style={{ color: isDark ? '#d1d5db' : '#374151' }}
+                      >
                         {info.value}
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-500">
+                      <p 
+                        className="text-sm"
+                        style={{ color: isDark ? '#9ca3af' : '#6b7280' }}
+                      >
                         {info.description}
                       </p>
                     </div>
@@ -234,7 +277,14 @@ const Contact = () => {
 
             {/* Social Media */}
             <div>
-              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-gray-900 dark:from-white to-red-500 bg-clip-text text-transparent">
+              <h3 
+                className="text-2xl font-bold mb-6 bg-gradient-to-r bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: isDark 
+                    ? 'linear-gradient(to right, #ffffff, #ef4444)'
+                    : 'linear-gradient(to right, #1f2937, #dc2626)'
+                }}
+              >
                 Follow Me
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -244,12 +294,30 @@ const Contact = () => {
                     <a
                       key={index}
                       href={social.url}
-                      className={`cursor-target flex flex-col items-center p-4 bg-gray-200/30 dark:bg-gray-900/30 rounded-lg border border-gray-300 dark:border-gray-700 hover:border-red-500/50 transition-all duration-300 group backdrop-blur-sm ${social.color} ${social.bgColor}`}
+                      className={`cursor-target flex flex-col items-center p-4 rounded-lg border transition-all duration-300 group backdrop-blur-sm ${social.color} ${social.bgColor}`}
+                      style={{
+                        backgroundColor: isDark ? 'rgba(17, 24, 39, 0.3)' : 'rgba(248, 250, 252, 0.6)',
+                        borderColor: isDark ? '#374151' : '#d1d5db'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.borderColor = isDark ? 'rgba(239, 68, 68, 0.5)' : 'rgba(220, 38, 38, 0.5)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.borderColor = isDark ? '#374151' : '#d1d5db';
+                      }}
                     >
-                      <div className="text-gray-700 dark:text-gray-300 mb-2 group-hover:scale-110 transition-transform duration-300">
+                      <div 
+                        className="mb-2 group-hover:scale-110 transition-transform duration-300"
+                        style={{ color: isDark ? '#d1d5db' : '#374151' }}
+                      >
                         <IconComponent className="w-8 h-8" />
                       </div>
-                      <span className="text-sm font-medium text-gray-900 dark:text-white">{social.name}</span>
+                      <span 
+                        className="text-sm font-medium"
+                        style={{ color: isDark ? '#ffffff' : '#1f2937' }}
+                      >
+                        {social.name}
+                      </span>
                     </a>
                   );
                 })}
@@ -257,12 +325,27 @@ const Contact = () => {
             </div>
 
             {/* Availability Status */}
-            <div className="bg-gradient-to-r from-green-100/50 to-green-200/30 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-6 border border-green-400/50 dark:border-green-600/30">
+            <div 
+              className="rounded-lg p-6 border"
+              style={{
+                background: isDark 
+                  ? 'linear-gradient(to right, rgba(34, 197, 94, 0.1), rgba(21, 128, 61, 0.1))'
+                  : 'linear-gradient(to right, rgba(187, 247, 208, 0.5), rgba(167, 243, 208, 0.3))',
+                borderColor: isDark ? 'rgba(34, 197, 94, 0.3)' : 'rgba(34, 197, 94, 0.5)'
+              }}
+            >
               <div className="flex items-center space-x-3 mb-3">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <h3 className="text-lg font-semibold text-green-600 dark:text-green-400">Currently Available</h3>
+                <h3 
+                  className="text-lg font-semibold"
+                  style={{ color: isDark ? '#4ade80' : '#16a34a' }}
+                >
+                  Currently Available
+                </h3>
               </div>
-              <p className="text-gray-700 dark:text-gray-300">
+              <p 
+                style={{ color: isDark ? '#d1d5db' : '#374151' }}
+              >
                 I'm currently open to new opportunities and interesting projects. 
                 Feel free to reach out if you'd like to work together!
               </p>
@@ -270,72 +353,167 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gray-200/30 dark:bg-gray-900/30 rounded-lg p-8 border border-gray-300 dark:border-gray-700 backdrop-blur-sm">
-            <h2 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">Send Message</h2>
+          <div 
+            className="rounded-lg p-8 border backdrop-blur-sm"
+            style={{
+              backgroundColor: isDark ? 'rgba(17, 24, 39, 0.3)' : 'rgba(248, 250, 252, 0.6)',
+              borderColor: isDark ? '#374151' : '#d1d5db'
+            }}
+          >
+            <h2 
+              className="text-2xl font-bold mb-6 text-center"
+              style={{ color: isDark ? '#ffffff' : '#1f2937' }}
+            >
+              Send Message
+            </h2>
             
             {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-green-100/50 dark:bg-green-900/30 border border-green-400/50 dark:border-green-600/50 rounded-lg">
+              <div 
+                className="mb-6 p-4 border rounded-lg"
+                style={{
+                  backgroundColor: isDark ? 'rgba(34, 197, 94, 0.1)' : 'rgba(187, 247, 208, 0.3)',
+                  borderColor: isDark ? 'rgba(34, 197, 94, 0.3)' : 'rgba(34, 197, 94, 0.5)'
+                }}
+              >
                 <div className="flex items-center space-x-2">
-                  <span className="text-green-600 dark:text-green-400">✅</span>
-                  <span className="text-green-700 dark:text-green-300">Message sent successfully! I'll get back to you soon.</span>
+                  <span 
+                    style={{ color: isDark ? '#4ade80' : '#16a34a' }}
+                  >✅</span>
+                  <span 
+                    style={{ color: isDark ? '#4ade80' : '#15803d' }}
+                  >Message sent successfully! I'll get back to you soon.</span>
                 </div>
               </div>
             )}
 
             {submitStatus === 'error' && (
-              <div className="mb-6 p-4 bg-red-100/50 dark:bg-red-900/30 border border-red-400/50 dark:border-red-600/50 rounded-lg">
+              <div 
+                className="mb-6 p-4 border rounded-lg"
+                style={{
+                  backgroundColor: isDark ? 'rgba(239, 68, 68, 0.1)' : 'rgba(254, 226, 226, 0.5)',
+                  borderColor: isDark ? 'rgba(239, 68, 68, 0.3)' : 'rgba(239, 68, 68, 0.5)'
+                }}
+              >
                 <div className="flex items-center space-x-2">
-                  <span className="text-red-600 dark:text-red-400">❌</span>
-                  <span className="text-red-700 dark:text-red-300">Failed to send message. Please try again or contact me directly.</span>
+                  <span 
+                    style={{ color: isDark ? '#f87171' : '#dc2626' }}
+                  >❌</span>
+                  <span 
+                    style={{ color: isDark ? '#f87171' : '#b91c1c' }}
+                  >Failed to send message. Please try again or contact me directly.</span>
                 </div>
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">Name *</label>
+                <label 
+                  className="block text-sm font-medium mb-2"
+                  style={{ color: isDark ? '#ffffff' : '#1f2937' }}
+                >
+                  Name *
+                </label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-3 border rounded-lg focus:outline-none transition-colors"
+                  style={{
+                    backgroundColor: isDark ? '#374151' : '#ffffff',
+                    borderColor: isDark ? '#6b7280' : '#d1d5db',
+                    color: isDark ? '#ffffff' : '#1f2937'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = isDark ? '#ef4444' : '#dc2626';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = isDark ? '#6b7280' : '#d1d5db';
+                  }}
                   placeholder="Nama Lengkap"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">Email *</label>
+                <label 
+                  className="block text-sm font-medium mb-2"
+                  style={{ color: isDark ? '#ffffff' : '#1f2937' }}
+                >
+                  Email *
+                </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-3 border rounded-lg focus:outline-none transition-colors"
+                  style={{
+                    backgroundColor: isDark ? '#374151' : '#ffffff',
+                    borderColor: isDark ? '#6b7280' : '#d1d5db',
+                    color: isDark ? '#ffffff' : '#1f2937'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = isDark ? '#ef4444' : '#dc2626';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = isDark ? '#6b7280' : '#d1d5db';
+                  }}
                   placeholder="Email Anda"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">Subject</label>
+                <label 
+                  className="block text-sm font-medium mb-2"
+                  style={{ color: isDark ? '#ffffff' : '#1f2937' }}
+                >
+                  Subject
+                </label>
                 <input
                   type="text"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-3 border rounded-lg focus:outline-none transition-colors"
+                  style={{
+                    backgroundColor: isDark ? '#374151' : '#ffffff',
+                    borderColor: isDark ? '#6b7280' : '#d1d5db',
+                    color: isDark ? '#ffffff' : '#1f2937'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = isDark ? '#ef4444' : '#dc2626';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = isDark ? '#6b7280' : '#d1d5db';
+                  }}
                   placeholder="Topik diskusi"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-900 dark:text-white">Message *</label>
+                <label 
+                  className="block text-sm font-medium mb-2"
+                  style={{ color: isDark ? '#ffffff' : '#1f2937' }}
+                >
+                  Message *
+                </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={6}
-                  className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:border-red-500 focus:outline-none transition-colors resize-none placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white"
+                  className="w-full px-4 py-3 border rounded-lg focus:outline-none transition-colors resize-none"
+                  style={{
+                    backgroundColor: isDark ? '#374151' : '#ffffff',
+                    borderColor: isDark ? '#6b7280' : '#d1d5db',
+                    color: isDark ? '#ffffff' : '#1f2937'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = isDark ? '#ef4444' : '#dc2626';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = isDark ? '#6b7280' : '#d1d5db';
+                  }}
                   placeholder="Ceritakan tentang proyek Anda atau sekedar menyapa..."
                 />
               </div>
@@ -343,13 +521,27 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting || !formData.name || !formData.email || !formData.message}
-                className={`
-                  w-full py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform
-                  ${isSubmitting || !formData.name || !formData.email || !formData.message
-                    ? 'bg-gray-600 cursor-not-allowed opacity-50'
-                    : 'bg-red-600 hover:bg-red-700 hover:scale-105 shadow-lg hover:shadow-red-600/25'
+                className="w-full py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform"
+                style={{
+                  backgroundColor: (isSubmitting || !formData.name || !formData.email || !formData.message)
+                    ? (isDark ? '#6b7280' : '#9ca3af')
+                    : (isDark ? '#dc2626' : '#dc2626'),
+                  color: '#ffffff',
+                  cursor: (isSubmitting || !formData.name || !formData.email || !formData.message) ? 'not-allowed' : 'pointer',
+                  opacity: (isSubmitting || !formData.name || !formData.email || !formData.message) ? 0.5 : 1
+                }}
+                onMouseEnter={(e) => {
+                  if (!(isSubmitting || !formData.name || !formData.email || !formData.message)) {
+                    e.target.style.backgroundColor = isDark ? '#b91c1c' : '#b91c1c';
+                    e.target.style.transform = 'scale(1.05)';
                   }
-                `}
+                }}
+                onMouseLeave={(e) => {
+                  if (!(isSubmitting || !formData.name || !formData.email || !formData.message)) {
+                    e.target.style.backgroundColor = '#dc2626';
+                    e.target.style.transform = 'scale(1)';
+                  }
+                }}
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center space-x-2">

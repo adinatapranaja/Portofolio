@@ -158,10 +158,14 @@ const About = () => {
           .about-container {
             min-height: 100vh;
             padding: 120px 40px 80px;
-            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
+            background: ${isDark 
+              ? 'linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%)'
+              : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%)'
+            };
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            color: ${isDark ? '#ffffff' : '#1e293b'};
           }
 
           .about-container::before {
