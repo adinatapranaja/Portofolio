@@ -4,7 +4,6 @@ import { useTheme } from '../context/ThemeContext';
 const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
   const { isDark, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,24 +22,7 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
   ];
 
   const handleNavigation = (page) => {
-    // Prevent multiple clicks
-    if (isNavigating) return;
-    
-    setIsNavigating(true);
     setCurrentPage(page);
-    
-    // Smooth scroll to top with better timing
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-      
-      // Reset navigation state after scroll completes
-      setTimeout(() => {
-        setIsNavigating(false);
-      }, 500);
-    }, 50);
   };
 
   const navbarStyle = {
@@ -49,17 +31,14 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
     left: '50%',
     transform: 'translateX(-50%)',
     zIndex: 1000,
-    backdropFilter: isScrolled ? 'blur(20px)' : 'blur(15px) saturate(1.2)',
-    background: isScrolled 
-      ? 'linear-gradient(135deg, rgba(15, 20, 25, 0.95) 0%, rgba(26, 31, 46, 0.95) 50%, rgba(15, 20, 25, 0.95) 100%)'
-      : 'linear-gradient(135deg, rgba(15, 20, 25, 0.8) 0%, rgba(26, 31, 46, 0.8) 50%, rgba(15, 20, 25, 0.8) 100%)',
-    border: '1px solid rgba(239, 68, 68, 0.2)',
+    backdropFilter: 'blur(20px)',
+    background: isScrolled ? 'rgba(15, 20, 25, 0.95)' : 'rgba(15, 20, 25, 0.9)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
     borderRadius: '24px',
     padding: '12px 20px',
     boxShadow: `
-      0 8px 32px rgba(0, 0, 0, 0.4),
-      0 2px 8px rgba(239, 68, 68, 0.15),
-      0 0 20px rgba(26, 31, 46, 0.3),
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      0 2px 8px rgba(239, 68, 68, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.1)
     `,
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -75,20 +54,10 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
         {`
           @keyframes navbarFloat {
             0%, 100% { 
-              transform: translateX(-50%) translateY(0px);
-              box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.4),
-                0 2px 8px rgba(239, 68, 68, 0.15),
-                0 0 20px rgba(26, 31, 46, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+              transform: translateX(-50%) translateY(0px); 
             }
             50% { 
-              transform: translateX(-50%) translateY(-3px);
-              box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.5),
-                0 4px 12px rgba(239, 68, 68, 0.2),
-                0 0 30px rgba(26, 31, 46, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+              transform: translateX(-50%) translateY(-3px); 
             }
           }
 
@@ -99,14 +68,10 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
 
           @keyframes buttonGlow {
             0%, 100% { 
-              box-shadow: 
-                0 4px 12px rgba(239, 68, 68, 0.2),
-                0 0 15px rgba(26, 31, 46, 0.3);
+              box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
             }
             50% { 
-              box-shadow: 
-                0 6px 20px rgba(239, 68, 68, 0.4),
-                0 0 25px rgba(26, 31, 46, 0.5);
+              box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
             }
           }
 
@@ -241,16 +206,6 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
             animation: buttonGlow 3s ease-in-out infinite;
           }
 
-          .nav-link.navigating {
-            opacity: 0.7;
-            transform: scale(0.95);
-            pointer-events: none;
-          }
-
-          .animated-navbar.navigating {
-            pointer-events: none;
-          }
-
           .theme-toggle {
             padding: 10px;
             border-radius: 10px;
@@ -383,7 +338,7 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
       </style>
 
       {/* Navbar */}
-      <nav className={`animated-navbar ${isNavigating ? 'navigating' : ''}`} style={navbarStyle}>
+      <nav className="animated-navbar" style={navbarStyle}>
         <div className="nav-content">
           <div className="nav-logo" onClick={() => handleNavigation('home')}>
             <div className="logo-icon">
@@ -396,9 +351,8 @@ const AnimatedNavbar = ({ currentPage, setCurrentPage }) => {
             {navigationItems.map((item) => (
               <button
                 key={item.key}
-                className={`nav-link ${currentPage === item.key ? 'active' : ''} ${isNavigating ? 'navigating' : ''}`}
+                className={`nav-link ${currentPage === item.key ? 'active' : ''}`}
                 onClick={() => handleNavigation(item.key)}
-                disabled={isNavigating}
               >
                 {item.label}
               </button>

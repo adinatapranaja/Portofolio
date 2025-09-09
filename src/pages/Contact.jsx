@@ -164,13 +164,11 @@ const Contact = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: isDark 
-        ? 'linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 50%, #1a1a2e 100%)' 
-        : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%)',
+      background: 'linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%)',
       position: 'relative',
       overflow: 'hidden',
       transition: 'all 0.3s ease',
-      color: isDark ? '#ffffff' : '#1e293b',
+      color: '#ffffff',
       paddingTop: '6rem'
     }}>
       {/* Background Pattern */}
@@ -181,7 +179,7 @@ const Contact = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='${isDark ? '0.02' : '0.04'}'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef4444' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         pointerEvents: 'none'
       }}></div>
       

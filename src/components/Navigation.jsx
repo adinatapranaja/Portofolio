@@ -1,243 +1,353 @@
 import React, { useState, useEffect } from 'react';
-import { useTheme } from '../context/ThemeContext';
-import GooeyNav from './GooeyNav';
 
-const Navigation = ({ currentPage, setCurrentPage }) => {
-  const { isDark, toggleTheme } = useTheme();
+const BulletproofNavigation = ({ currentPage, setCurrentPage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when window is resized to desktop
+  // Force positioning dengan JavaScript
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) { // md breakpoint
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const navbar = document.getElementById('bulletproof-navbar');
+    if (navbar) {
+      // Force reset semua positioning
+      navbar.style.position = 'sticky';
+      navbar.style.top = '0';
+      navbar.style.left = '0';
+      navbar.style.right = '0';
+      navbar.style.width = '100%';
+      navbar.style.zIndex = '9999';
+      navbar.style.margin = '0';
+      navbar.style.transform = 'none';
+      navbar.style.webkitTransform = 'none';
+    }
   }, []);
 
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isMobileMenuOpen]);
-
   const navigationItems = [
-    { label: 'Home', href: '#', key: 'home', icon: '🏠' },
-    { label: 'Gallery', href: '#', key: 'projects', icon: '💼' },
-    { label: 'Contact', href: '#', key: 'contact', icon: '📧' }
+    { label: 'Home', key: 'home' },
+    { label: 'Gallery', key: 'projects' },
+    { label: 'Contact', key: 'contact' }
   ];
 
-  const handleNavigation = (page) => {
-    setCurrentPage(page);
-    setIsMobileMenuOpen(false);
+  // Inline styles yang akan override semua CSS
+  const navbarStyles = {
+    position: 'sticky',
+    top: 0,
+    left: 0,
+    right: 0,
+    width: '100%',
+    zIndex: 9999,
+    margin: 0,
+    padding: 0,
+    transform: 'none',
+    WebkitTransform: 'none',
+    backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)',
+    backdropFilter: 'blur(10px)',
+    WebkitBackdropFilter: 'blur(10px)',
+    borderBottom: '1px solid rgba(239, 68, 68, 0.3)',
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+    transition: 'all 0.3s ease',
+    // Force box model
+    boxSizing: 'border-box',
+    display: 'block',
+    clear: 'both',
+    // Override any parent transforms
+    isolation: 'isolate'
   };
 
-  // Handle GooeyNav navigation clicks
-  const handleGooeyNavClick = (e, index) => {
-    e.preventDefault();
-    const pageKey = navigationItems[index].key;
-    handleNavigation(pageKey);
+  const containerStyles = {
+    maxWidth: '1280px',
+    margin: '0 auto',
+    padding: '0 16px',
+    boxSizing: 'border-box',
+    width: '100%'
   };
 
-  // Get current active index for GooeyNav
-  const getCurrentActiveIndex = () => {
-    return navigationItems.findIndex(item => item.key === currentPage);
+  const flexContainerStyles = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: isScrolled ? '56px' : '64px',
+    transition: 'height 0.3s ease',
+    width: '100%',
+    boxSizing: 'border-box'
   };
 
   return (
     <>
-      <nav className={`
-        fixed top-0 w-full z-50 transition-all duration-300
-        ${isScrolled 
-          ? 'bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-red-300/50 dark:border-red-900/50' 
-          : 'bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-red-300/30 dark:border-red-900/30'
+      {/* Critical CSS injection */}
+      <style>{`
+        #bulletproof-navbar {
+          position: sticky !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          z-index: 9999 !important;
+          margin: 0 !important;
+          transform: none !important;
+          -webkit-transform: none !important;
         }
-      `}>
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
-          <div className="flex justify-between items-center h-14 sm:h-16">
+        
+        #bulletproof-navbar * {
+          box-sizing: border-box;
+        }
+        
+        /* Reset any parent container effects */
+        body {
+          overflow-x: hidden !important;
+        }
+        
+        /* Force hardware acceleration */
+        #bulletproof-navbar {
+          will-change: transform;
+          -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+        }
+        
+        /* Mobile specific fixes */
+        @media (max-width: 768px) {
+          #bulletproof-navbar {
+            position: sticky !important;
+            top: 0 !important;
+          }
+        }
+      `}</style>
+
+      <nav 
+        id="bulletproof-navbar"
+        style={navbarStyles}
+      >
+        <div style={containerStyles}>
+          <div style={flexContainerStyles}>
+            
             {/* Logo */}
-            <div className="flex items-center">
+            <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
               <button 
-                onClick={() => handleNavigation('home')}
-                className="flex items-center space-x-2 md:space-x-3 group focus:outline-none focus:ring-2 focus:ring-red-500 rounded-lg p-1.5 sm:p-2 transition-all duration-300"
+                onClick={() => setCurrentPage('home')}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '8px',
+                  borderRadius: '8px',
+                  transition: 'all 0.3s ease'
+                }}
               >
-                {/* Logo Icon/Symbol */}
-                <div className="relative w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-lg overflow-hidden shadow-lg transform group-hover:scale-105 transition-all duration-300">
+                <div style={{
+                  width: isScrolled ? '32px' : '40px',
+                  height: isScrolled ? '32px' : '40px',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease',
+                  flexShrink: 0
+                }}>
                   <img 
                     src="/img/Profile.jpg" 
-                    alt="Adinata Profile" 
-                    className="w-full h-full object-cover"
+                    alt="Profile" 
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'cover',
+                      display: 'block'
+                    }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-transparent rounded-lg"></div>
                 </div>
-                
-                {/* Logo Text - Progressive disclosure */}
-                <div className="hidden sm:flex flex-col">
-                  <span className="text-sm sm:text-base md:text-lg font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-white dark:to-gray-300 bg-clip-text text-transparent group-hover:from-gray-600 group-hover:to-gray-800 dark:group-hover:from-gray-100 dark:group-hover:to-gray-400 transition-all duration-300">
-                    Adinata AP
-                  </span>
-                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium hidden md:block">
-                    Personal Portfolio
-                  </span>
-                </div>
-                
-                {/* Mobile only - Just initials */}
-                <div className="sm:hidden">
-                  <span className="text-sm font-bold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-white dark:to-gray-300 bg-clip-text text-transparent group-hover:from-gray-600 group-hover:to-gray-800 dark:group-hover:from-gray-100 dark:group-hover:to-gray-400 transition-all duration-300">
-                    AP
-                  </span>
-                </div>
+                <span style={{ 
+                  fontWeight: 'bold', 
+                  fontSize: isScrolled ? '14px' : '16px',
+                  color: '#374151',
+                  transition: 'font-size 0.3s ease',
+                  whiteSpace: 'nowrap'
+                }}>
+                  Adinata AP
+                </span>
               </button>
             </div>
 
-            {/* Tablet Navigation (hidden on mobile, visible on md+) */}
-            <div className="hidden lg:flex items-center">
-              <GooeyNav
-                items={navigationItems.map((item, index) => ({
-                  label: item.label,
-                  href: item.href,
-                  onClick: (e) => handleGooeyNavClick(e, index)
-                }))}
-                particleCount={12}
-                particleDistances={[60, 8]}
-                particleR={80}
-                initialActiveIndex={Math.max(0, getCurrentActiveIndex())}
-                animationTime={500}
-                timeVariance={200}
-                colors={[1, 2, 3, 4]}
-                key={currentPage} // Force re-render when page changes
-              />
-            </div>
-
-            {/* Tablet Navigation (simple buttons for md-lg) */}
-            <div className="hidden md:flex lg:hidden items-center space-x-1">
+            {/* Desktop Navigation */}
+            <div style={{ 
+              display: window.innerWidth >= 768 ? 'flex' : 'none',
+              gap: '8px',
+              alignItems: 'center'
+            }}>
               {navigationItems.map((item) => (
                 <button
                   key={item.key}
-                  onClick={() => handleNavigation(item.key)}
-                  className={`
-                    px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300
-                    focus:outline-none focus:ring-2 focus:ring-red-500
-                    ${currentPage === item.key
-                      ? 'text-red-500 bg-red-500/10'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-gray-800/50'
+                  onClick={() => setCurrentPage(item.key)}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    background: currentPage === item.key ? 'rgba(239, 68, 68, 0.1)' : 'transparent',
+                    color: currentPage === item.key ? '#ef4444' : '#374151',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (currentPage !== item.key) {
+                      e.target.style.backgroundColor = 'rgba(156, 163, 175, 0.1)';
                     }
-                  `}
+                  }}
+                  onMouseLeave={(e) => {
+                    if (currentPage !== item.key) {
+                      e.target.style.backgroundColor = 'transparent';
+                    }
+                  }}
                 >
-                  <span className="hidden xl:inline">{item.label}</span>
-                  <span className="xl:hidden text-lg">{item.icon}</span>
+                  {item.label}
                 </button>
               ))}
             </div>
 
             {/* Controls */}
-            <div className="flex items-center space-x-2 sm:space-x-3">
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px',
+              flexShrink: 0
+            }}>
               {/* Theme Toggle */}
               <button
-                onClick={toggleTheme}
-                className="cursor-target p-1.5 sm:p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500"
-                aria-label="Toggle theme"
+                style={{
+                  padding: '8px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: '#f3f4f6',
+                  cursor: 'pointer',
+                  width: isScrolled ? '36px' : '40px',
+                  height: isScrolled ? '36px' : '40px',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '16px'
+                }}
               >
-                <div className="w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-sm sm:text-base">
-                  {isDark ? '☀️' : '🌙'}
-                </div>
+                🌙
               </button>
 
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="cursor-target md:hidden p-1.5 sm:p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
-                aria-label="Toggle mobile menu"
+                style={{
+                  display: window.innerWidth < 768 ? 'flex' : 'none',
+                  padding: '8px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: '#f3f4f6',
+                  cursor: 'pointer',
+                  width: isScrolled ? '36px' : '40px',
+                  height: isScrolled ? '36px' : '40px',
+                  transition: 'all 0.3s ease',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'column',
+                  gap: '3px'
+                }}
               >
-                <div className="w-5 h-5 sm:w-6 sm:h-6 flex flex-col justify-center items-center">
-                  <span className={`bg-gray-800 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-5 sm:w-6 rounded-sm ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
-                  <span className={`bg-gray-800 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-5 sm:w-6 rounded-sm my-0.5 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-                  <span className={`bg-gray-800 dark:bg-white block transition-all duration-300 ease-out h-0.5 w-5 sm:w-6 rounded-sm ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
-                </div>
+                <span style={{
+                  width: '16px',
+                  height: '2px',
+                  backgroundColor: '#374151',
+                  borderRadius: '1px',
+                  transform: isMobileMenuOpen ? 'rotate(45deg) translateY(5px)' : 'none',
+                  transition: 'all 0.3s ease',
+                  display: 'block'
+                }}></span>
+                <span style={{
+                  width: '16px',
+                  height: '2px',
+                  backgroundColor: '#374151',
+                  borderRadius: '1px',
+                  opacity: isMobileMenuOpen ? 0 : 1,
+                  transition: 'all 0.3s ease',
+                  display: 'block'
+                }}></span>
+                <span style={{
+                  width: '16px',
+                  height: '2px',
+                  backgroundColor: '#374151',
+                  borderRadius: '1px',
+                  transform: isMobileMenuOpen ? 'rotate(-45deg) translateY(-5px)' : 'none',
+                  transition: 'all 0.3s ease',
+                  display: 'block'
+                }}></span>
               </button>
             </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        <div className={`
-          md:hidden transition-all duration-300 ease-in-out
-          ${isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}
-          overflow-hidden bg-white/95 dark:bg-black/95 backdrop-blur-md border-t border-red-300/30 dark:border-red-900/30
-        `}>
-          <div className="px-3 sm:px-4 pt-2 pb-3 space-y-1">
+        <div style={{
+          maxHeight: isMobileMenuOpen ? '300px' : '0',
+          overflow: 'hidden',
+          transition: 'max-height 0.3s ease',
+          backgroundColor: 'rgba(255, 255, 255, 0.98)',
+          borderTop: isMobileMenuOpen ? '1px solid rgba(239, 68, 68, 0.2)' : 'none',
+          width: '100%'
+        }}>
+          <div style={{ padding: '16px' }}>
             {navigationItems.map((item) => (
               <button
                 key={item.key}
-                onClick={() => handleNavigation(item.key)}
-                className={`
-                  flex items-center space-x-3 w-full px-3 py-2.5 sm:py-3 rounded-lg transition-all duration-300
-                  focus:outline-none focus:ring-2 focus:ring-red-500 text-left
-                  ${currentPage === item.key
-                    ? 'text-red-500 bg-red-500/10 border-l-4 border-red-500 shadow-sm'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-gray-800/50'
-                  }
-                `}
+                onClick={() => {
+                  setCurrentPage(item.key);
+                  setIsMobileMenuOpen(false);
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  width: '100%',
+                  padding: '12px 16px',
+                  marginBottom: '4px',
+                  borderRadius: '12px',
+                  border: 'none',
+                  background: currentPage === item.key ? 'rgba(239, 68, 68, 0.1)' : 'transparent',
+                  color: currentPage === item.key ? '#ef4444' : '#374151',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                  transition: 'all 0.3s ease',
+                  fontSize: '16px'
+                }}
               >
-                <span className="text-lg sm:text-xl flex-shrink-0">{item.icon}</span>
-                <span className="font-medium text-sm sm:text-base">{item.label}</span>
-                {currentPage === item.key && (
-                  <div className="ml-auto flex-shrink-0">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  </div>
-                )}
+                {item.label}
               </button>
             ))}
-            
-            {/* Mobile Theme Toggle */}
-            <div className="pt-2 mt-2 border-t border-gray-200/50 dark:border-gray-700/50">
-              <button
-                onClick={toggleTheme}
-                className="flex items-center space-x-3 w-full px-3 py-2.5 sm:py-3 rounded-lg transition-all duration-300 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-red-500"
-              >
-                <span className="text-lg sm:text-xl flex-shrink-0">{isDark ? '☀️' : '🌙'}</span>
-                <span className="font-medium text-sm sm:text-base">
-                  {isDark ? 'Light Mode' : 'Dark Mode'}
-                </span>
-              </button>
-            </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Overlay */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300"
           onClick={() => setIsMobileMenuOpen(false)}
-          style={{ top: isScrolled ? '56px' : '64px' }} // Adjust for navbar height
+          style={{
+            position: 'fixed',
+            top: isScrolled ? '56px' : '64px',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            zIndex: 9998
+          }}
         />
       )}
-
-      {/* Spacer for fixed navbar */}
-      <div className="h-14 sm:h-16"></div>
     </>
   );
 };
 
-export default Navigation;
+export default BulletproofNavigation;
