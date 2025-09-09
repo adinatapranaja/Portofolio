@@ -7,25 +7,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import TargetCursor from './components/TargetCursor';
 import AIChat from './components/AIChat';
-
-// Loading component
-const LoadingScreen = () => (
-  <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
-    <div className="text-center">
-      <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-      <h2 className="text-2xl font-bold text-white mb-2">Loading Portfolio</h2>
-      <div className="flex space-x-1">
-        {[...Array(3)].map((_, i) => (
-          <div
-            key={i}
-            className="w-2 h-2 bg-red-500 rounded-full animate-bounce"
-            style={{ animationDelay: `${i * 0.2}s` }}
-          />
-        ))}
-      </div>
-    </div>
-  </div>
-);
+import LoadingScreen from './components/LoadingScreen';
 
 // SEO Component for meta tags
 const SEOHead = ({ currentPage }) => {
@@ -120,17 +102,23 @@ class ErrorBoundary extends React.Component {
 
 // Main App Component
 const App = () => {
+  return (
+    <ErrorBoundary>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </ErrorBoundary>
+  );
+};
+
+// App Content with loading state
+const AppContent = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // Simulate loading time and check if all resources are ready
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
 
   const renderPage = () => {
     switch (currentPage) {
@@ -146,48 +134,44 @@ const App = () => {
   };
 
   if (isLoading) {
-    return <LoadingScreen />;
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
   }
 
   return (
-    <ErrorBoundary>
-      <ThemeProvider>
-        <div className="min-h-screen text-white transition-colors duration-300">
-          <SEOHead currentPage={currentPage} />
-          <AnimatedNavbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-          <main className="relative">
-            {renderPage()}
-          </main>
-          
-          {/* Footer */}
-          <footer className="bg-gray-100/50 dark:bg-black/50 border-t border-gray-300 dark:border-gray-800 py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex flex-col md:flex-row justify-between items-center">
-                <div className="mb-4 md:mb-0">
-                  <p className="text-gray-600 dark:text-gray-400">
-                    © 2025 Adinata Pranaja. Built with React & TailwindCSS.
-                  </p>
-                </div>
-                <div className="flex space-x-6">
-                  <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-transparent border-none cursor-pointer">Privacy</button>
-                  <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-transparent border-none cursor-pointer">Terms</button>
-                  <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-transparent border-none cursor-pointer">Sitemap</button>
-                </div>
-              </div>
+    <div className="min-h-screen text-white transition-colors duration-300">
+      <SEOHead currentPage={currentPage} />
+      <AnimatedNavbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <main className="relative">
+        {renderPage()}
+      </main>
+      
+      {/* Footer */}
+      <footer className="bg-gray-100/50 dark:bg-black/50 border-t border-gray-300 dark:border-gray-800 py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <p className="text-gray-600 dark:text-gray-400">
+                © 2025 Adinata Pranaja. Built with React & TailwindCSS.
+              </p>
             </div>
-          </footer>
-          
-          {/* Target Cursor Animation */}
-          <TargetCursor 
-            spinDuration={2}
-            hideDefaultCursor={true}
-          />
-          
-          {/* AI Chat Component */}
-          <AIChat />
+            <div className="flex space-x-6">
+              <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-transparent border-none cursor-pointer">Privacy</button>
+              <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-transparent border-none cursor-pointer">Terms</button>
+              <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors bg-transparent border-none cursor-pointer">Sitemap</button>
+            </div>
+          </div>
         </div>
-      </ThemeProvider>
-    </ErrorBoundary>
+      </footer>
+      
+      {/* Target Cursor Animation */}
+      <TargetCursor 
+        spinDuration={2}
+        hideDefaultCursor={true}
+      />
+      
+      {/* AI Chat Component */}
+      <AIChat />
+    </div>
   );
 };
 
